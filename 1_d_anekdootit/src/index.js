@@ -23,11 +23,15 @@ const App = (props) => {
 
   return (
     <div>
+			<h2>ANECDOTE OF THE DAY:</h2>
       {props.anecdotes[selected]}
       <p>This anecdote has {points[selected]} votes!</p>
 			<Button event={() => pointsHandler()} name="Vote" />
       <Button event={() => selectedHandler(Math.floor(Math.random() * 6))} name="Change anecdote" />
-    </div>
+			<h2>ANECDOTE WITH THE MOST VOTES:</h2>
+			{props.anecdotes[points.indexOf(Math.max(...points))]}
+			<h4>It has {Math.max(...points)} votes!</h4>
+		</div>
   );
 };
 
