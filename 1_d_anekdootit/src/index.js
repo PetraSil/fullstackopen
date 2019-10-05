@@ -3,19 +3,30 @@ import ReactDOM from 'react-dom';
 
 const Button = ({ event, name }) => {
     return (
-        <div>
-            <button onClick={event}>{name}</button>
-        </div>
+      <button onClick={event}>{name}</button>
     );
 };
 
 const App = (props) => {
-  const [selected, setSelected] = useState(0);
+  const [points, setPoints] = useState( [0, 0, 0, 0, 0, 0] );
+	const [selected, setSelected] = useState(0);
+	
+	const selectedHandler = (num = selected) => {
+		setSelected(num);
+	}
+
+	const pointsHandler = () => {
+		const pointsCopy = [ ...points ];
+		pointsCopy[selected] +=1;
+		setPoints(pointsCopy);
+	}
 
   return (
     <div>
       {props.anecdotes[selected]}
-      <Button event={() => setSelected(Math.floor(Math.random() * 6))} name="Change anecdote" />
+      <p>This anecdote has {points[selected]} votes!</p>
+			<Button event={() => pointsHandler()} name="Vote" />
+      <Button event={() => selectedHandler(Math.floor(Math.random() * 6))} name="Change anecdote" />
     </div>
   );
 };
