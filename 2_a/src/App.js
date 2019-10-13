@@ -48,7 +48,7 @@ const App = () => {
 
   return (
     <div>
-      {courses.map( item => <Course course={item} parts={courses.parts} /> )}
+      {courses.map( item => <Course key={Math.random()} course={item} parts={item.parts} /> )}
     </div>
   )
 }
